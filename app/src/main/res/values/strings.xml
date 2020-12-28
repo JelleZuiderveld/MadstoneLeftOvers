@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Madstone</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="title">Leftovers</string>
+    <string name="lookup">Look for leftover recipes</string>
+    <string name="searchInstructions">Fill in the ingredients you have</string>
+    <string name="search">Search</string>
+    <string name="add">Add</string>
+    <string name="currentList">Current Shoppinglist</string>
+    <string name="empty">Empty list</string>
+    <string name="home">Home</string>
+    <string name="list">Shoppinglist</string>
+    <string name="map">Map</string>
+
+</resources>
