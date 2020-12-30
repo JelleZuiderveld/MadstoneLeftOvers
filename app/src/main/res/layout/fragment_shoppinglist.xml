@@ -40,8 +40,9 @@
         app:layout_constraintTop_toBottomOf="@+id/subtitleList">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/itemItem"
             android:layout_width="match_parent"
-            android:layout_height="32dp" />
+            android:layout_height="52dp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -56,6 +57,7 @@
         app:layout_constraintVertical_bias="0.09" />
 
     <Button
+        android:id="@+id/addItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
@@ -68,6 +70,7 @@
         app:layout_constraintVertical_bias="0.3" />
 
     <Button
+        android:id="@+id/emtpyBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/empty"

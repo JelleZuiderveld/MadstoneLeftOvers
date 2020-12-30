@@ -26,4 +26,6 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
     }
+
+
 }
