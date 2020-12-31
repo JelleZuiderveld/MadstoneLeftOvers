@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/shoppingListFragment2">
+    app:startDestination="@id/mapFragment">
     <fragment
-        android:id="@+id/shoppingListFragment2"
-        android:name="com.example.madstone.ui.ShoppingListFragment"
-        android:label="ShoppingListFragment" />
+        android:id="@+id/mapFragment"
+        android:name="com.example.madstone.ui.MapFragment"
+        android:label="MapFragment" />
 </navigation>
