@@ -12,5 +12,5 @@ data class ShoppingList (
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
-val id: Long? = null
+    val id: Long? = null
 )

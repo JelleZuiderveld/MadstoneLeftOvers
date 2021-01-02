@@ -18,5 +18,6 @@
     <string name="list">Shoppinglist</string>
     <string name="map">Map</string>
     <string name="ingredients">Ingredients:</string>
+    <string name="back">back</string>
 
 </resources>

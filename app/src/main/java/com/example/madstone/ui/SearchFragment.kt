@@ -37,8 +37,11 @@ class SearchFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         initViews()
+
+        back_home.setOnClickListener {
+            findNavController().navigate(R.id.action_searchFragment_to_homeFragment)
+        }
     }
 
     private fun initViews(){
