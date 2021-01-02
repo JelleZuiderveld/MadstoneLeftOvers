@@ -2,6 +2,7 @@ package com.example.madstone.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
@@ -12,19 +13,41 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.madstone.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var homeFragment: HomeFragment
-    lateinit var shoppingListFragment: ShoppingListFragment
-    lateinit var mapFragment: MapFragment
+//    lateinit var homeFragment: HomeFragment
+//    lateinit var shoppingListFragment: ShoppingListFragment
+//    lateinit var mapFragment: MapFragment
+
+    private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener {item ->
+        when(item.itemId){
+            R.id.nav_home->{
+                replaceFragment(HomeFragment())
+                return@OnNavigationItemSelectedListener true
+            }
+            R.id.nav_list->{
+                replaceFragment(ShoppingListFragment())
+                return@OnNavigationItemSelectedListener true
+            }
+            R.id.nav_map->{
+                replaceFragment((MapFragment()))
+                return@OnNavigationItemSelectedListener true
+            }
+        }
+        false
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val navView: BottomNavigationView = findViewById(R.id.bottom_navigation)
+        bottom_navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+        replaceFragment(HomeFragment())
+
+//        val navView: BottomNavigationView = findViewById(R.id.bottom_navigation)
 //
 //
 //        navView.setOnNavigationItemSelectedListener { item ->
@@ -62,13 +85,20 @@ class MainActivity : AppCompatActivity() {
 //            true
 //        }
 
-        val navController = findNavController(R.id.nav_host_fragment)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        val appBarConfiguration = AppBarConfiguration(setOf(
-            R.id.nav_home, R.id.nav_list, R.id.nav_map))
-        //setupActionBarWithNavController(navController, appBarConfiguration)
-        navView.setupWithNavController(navController)
+//        val navController = findNavController(R.id.nav_host_fragment)
+//        // Passing each menu ID as a set of Ids because each
+//        // menu should be considered as top level destinations.
+//        val appBarConfiguration = AppBarConfiguration(setOf(
+//            R.id.nav_home, R.id.nav_list, R.id.nav_map))
+//        //setupActionBarWithNavController(navController, appBarConfiguration)
+//        navView.setupWithNavController(navController)
+    }
+
+
+    private fun replaceFragment(fragment: Fragment){
+        val fragmentTransaction = supportFragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.fragmentContainer, fragment)
+        fragmentTransaction.commit()
     }
 
 //    override fun onCreateOptionsMenu(menu: Menu): Boolean {
