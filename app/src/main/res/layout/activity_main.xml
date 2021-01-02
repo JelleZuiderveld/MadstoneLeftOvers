@@ -16,6 +16,5 @@
         app:menu="@menu/bottom_navigation_menu"
         />
 
-    <include layout="@layout/content_main" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

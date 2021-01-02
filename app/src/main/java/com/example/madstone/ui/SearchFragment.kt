@@ -40,7 +40,7 @@ class SearchFragment : Fragment() {
         initViews()
 
         back_home.setOnClickListener {
-            findNavController().navigate(R.id.action_searchFragment_to_homeFragment)
+            (context as MainActivity).replaceFragment(HomeFragment())
         }
     }
 

@@ -1,14 +1,12 @@
 package com.example.madstone.ui
 
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import android.widget.Button
-import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.fragment.findNavController
 import com.example.madstone.R
 import kotlinx.android.synthetic.main.fragment_home.*
-import kotlinx.android.synthetic.main.fragment_search.*
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
@@ -28,7 +26,12 @@ class HomeFragment : Fragment() {
         setHasOptionsMenu(true)
 
 
+        button_first.setOnClickListener() {
+            (context as MainActivity).replaceFragment(SearchFragment())
+        }
+
     }
 
-
 }
+
+
