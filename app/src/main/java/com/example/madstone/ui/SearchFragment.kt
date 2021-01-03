@@ -12,10 +12,14 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.room.Query
 import com.example.madstone.R
+import com.example.madstone.database.LeftOverDatabase
 import com.example.madstone.databinding.FragmentSearchBinding
+import com.example.madstone.model.Recipe
 import com.example.madstone.model.SearchIngredient
 import kotlinx.android.synthetic.main.fragment_search.*
+import java.util.*
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
@@ -25,6 +29,7 @@ class SearchFragment : Fragment() {
     private val searches = arrayListOf<SearchIngredient>()
     private val searchAdapter = SearchAdapter(searches)
     private lateinit var binding: FragmentSearchBinding
+    private val leftoverDatabase = LeftOverDatabase.getDatabase(requireContext())
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -42,7 +47,7 @@ class SearchFragment : Fragment() {
         back_home.setOnClickListener {
             (context as MainActivity).replaceFragment(HomeFragment())
         }
-        onSearch()
+        lookForRecipe()
     }
 
     private fun initViews(){
@@ -69,9 +74,30 @@ class SearchFragment : Fragment() {
         }
     }
 
-    private fun onSearch(){
-        searchBtn.setOnClickListener {
-            (context as MainActivity).replaceFragment(ResultFragment())
-        }
+    private fun onSearch(searchText: String){
+//        searchBtn.setOnClickListener {
+//            (context as MainActivity).replaceFragment(ResultFragment())
+//        }
+        val searchText = "$searchText%"
+        leftoverDatabase!!.recipeDao().getRecipeIngredient(searchText)
+            .observe(this, object : Observer<List<Recipe>>{
+                override fun onChanged(recipe: List<Recipe>?){
+                    if (recipe == null){
+                        return
+                    }
+                    val adapter = searchAdapter(
+                        this@SearchFragment,
+                        R.layout.item_search,
+                        recipe
+                    )
+                    lvSearchResults.adapter = adapter
+                }
+            })
+    }
+
+
+    fun lookForRecipe(query: String):Boolean{
+        onSearch(query)
+        return true
     }
 }

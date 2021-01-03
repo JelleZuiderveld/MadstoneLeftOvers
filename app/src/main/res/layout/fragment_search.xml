@@ -40,6 +40,15 @@
         app:layout_constraintStart_toStartOf="parent"
         />
 
+    <ListView
+        android:id="@+id/lvSearchResults"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/searchBtn"
+        app:layout_constraintTop_toBottomOf="@id/recyclerView"/>
+
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/textInputEditText"
         android:layout_width="194dp"
