@@ -23,4 +23,12 @@ data class Recipe(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     val id: Long? = null
-)
+){
+    companion object{
+        fun populateData(): Array<Recipe> {
+            return arrayOf<Recipe>(
+                Recipe("pasta","italianse pasta", "pasta, tomatensaus, 300gram gehakt", "this is how to prepare")
+            )
+        }
+    }
+}

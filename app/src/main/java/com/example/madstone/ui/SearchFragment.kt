@@ -42,6 +42,7 @@ class SearchFragment : Fragment() {
         back_home.setOnClickListener {
             (context as MainActivity).replaceFragment(HomeFragment())
         }
+        onSearch()
     }
 
     private fun initViews(){
@@ -65,8 +66,12 @@ class SearchFragment : Fragment() {
             searches.add(SearchIngredient(search))
             searchAdapter.notifyDataSetChanged()
             binding.textInputEditText.text?.clear()
-        } else{
+        }
+    }
 
+    private fun onSearch(){
+        searchBtn.setOnClickListener {
+            (context as MainActivity).replaceFragment(ResultFragment())
         }
     }
 }

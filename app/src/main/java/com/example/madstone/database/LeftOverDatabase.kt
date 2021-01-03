@@ -31,7 +31,7 @@ abstract class LeftOverDatabase: RoomDatabase() {
                                 context.applicationContext,
                                 LeftOverDatabase::class.java,
                                 DATABASE_NAME
-                            ).build()
+                            ).fallbackToDestructiveMigration().build()
                     }
                 }
             }
