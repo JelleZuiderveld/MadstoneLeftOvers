@@ -29,6 +29,7 @@ class SearchFragment : Fragment() {
     private val searches = arrayListOf<SearchIngredient>()
     private val searchAdapter = SearchAdapter(searches)
     private lateinit var binding: FragmentSearchBinding
+    //test
     //private val leftoverDatabase = LeftOverDatabase.getDatabase(requireContext())
 
     override fun onCreateView(
