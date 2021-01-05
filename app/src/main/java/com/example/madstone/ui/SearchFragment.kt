@@ -29,7 +29,7 @@ class SearchFragment : Fragment() {
     private val searches = arrayListOf<SearchIngredient>()
     private val searchAdapter = SearchAdapter(searches)
     private lateinit var binding: FragmentSearchBinding
-    private val leftoverDatabase = LeftOverDatabase.getDatabase(requireContext())
+    //private val leftoverDatabase = LeftOverDatabase.getDatabase(requireContext())
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -47,7 +47,7 @@ class SearchFragment : Fragment() {
         back_home.setOnClickListener {
             (context as MainActivity).replaceFragment(HomeFragment())
         }
-        lookForRecipe()
+        //lookForRecipe()
     }
 
     private fun initViews(){
@@ -74,30 +74,30 @@ class SearchFragment : Fragment() {
         }
     }
 
-    private fun onSearch(searchText: String){
-//        searchBtn.setOnClickListener {
-//            (context as MainActivity).replaceFragment(ResultFragment())
-//        }
-        val searchText = "$searchText%"
-        leftoverDatabase!!.recipeDao().getRecipeIngredient(searchText)
-            .observe(this, object : Observer<List<Recipe>>{
-                override fun onChanged(recipe: List<Recipe>?){
-                    if (recipe == null){
-                        return
-                    }
-                    val adapter = searchAdapter(
-                        this@SearchFragment,
-                        R.layout.item_search,
-                        recipe
-                    )
-                    lvSearchResults.adapter = adapter
-                }
-            })
-    }
-
-
-    fun lookForRecipe(query: String):Boolean{
-        onSearch(query)
-        return true
-    }
+//    private fun onSearch(searchText: String){
+////        searchBtn.setOnClickListener {
+////            (context as MainActivity).replaceFragment(ResultFragment())
+////        }
+//        val searchText = "$searchText%"
+//        leftoverDatabase!!.recipeDao().getRecipeIngredient(searchText)
+//            .observe(this, object : Observer<List<Recipe>>{
+//                override fun onChanged(recipe: List<Recipe>?){
+//                    if (recipe == null){
+//                        return
+//                    }
+//                    val adapter = searchAdapter(
+//                        this@SearchFragment,
+//                        R.layout.item_search,
+//                        recipe
+//                    )
+//                    lvSearchResults.adapter = adapter
+//                }
+//            })
+//    }
+//
+//
+//    fun lookForRecipe(query: String):Boolean{
+//        onSearch(query)
+//        return true
+//    }
 }

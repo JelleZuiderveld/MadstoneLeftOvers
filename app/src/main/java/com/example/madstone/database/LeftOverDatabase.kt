@@ -1,13 +1,16 @@
 package com.example.madstone.database
 
 import android.content.Context
+import android.util.Log
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.madstone.dao.RecipeDao
 import com.example.madstone.dao.ShoppingDao
 import com.example.madstone.model.Recipe
 import com.example.madstone.model.ShoppingList
+import java.util.concurrent.Executors
 
 @Database(entities = [ShoppingList::class, Recipe::class], version = 2, exportSchema = false)
 abstract class LeftOverDatabase: RoomDatabase() {
@@ -25,17 +28,46 @@ abstract class LeftOverDatabase: RoomDatabase() {
         fun getDatabase(context: Context): LeftOverDatabase? {
             if (databaseInstance == null) {
                 synchronized(LeftOverDatabase::class.java) {
-                    if (databaseInstance == null) {
-                        databaseInstance =
-                            Room.databaseBuilder(
-                                context.applicationContext,
-                                LeftOverDatabase::class.java,
-                                DATABASE_NAME
-                            ).fallbackToDestructiveMigration().build()
-                    }
+                    databaseInstance = Room.databaseBuilder(
+                        context.getApplicationContext(),
+                        LeftOverDatabase::class.java, DATABASE_NAME
+                    ).addCallback(object : RoomDatabase.Callback() {
+                        override fun onCreate(db: SupportSQLiteDatabase) {
+                            super.onCreate(db)
+                            Executors.newSingleThreadScheduledExecutor().execute(object : Runnable {
+                                override fun run() {
+                                    getDatabase(context)!!.recipeDao().insert(Recipe.populateData())
+                                    Log.d("DatabaseFilled", "DatabaseFilled")
+                                }
+                            })
+
+                        }
+
+                    })
+                        .build()
                 }
             }
             return databaseInstance
         }
     }
 }
+
+
+
+
+
+
+
+//                    if (databaseInstance == null) {
+//                        databaseInstance =
+//                            Room.databaseBuilder(
+//                                context.applicationContext,
+//                                LeftOverDatabase::class.java,
+//                                DATABASE_NAME
+//                            ).fallbackToDestructiveMigration().build()
+//                    }
+//                }
+//            }
+//            return databaseInstance
+
+
