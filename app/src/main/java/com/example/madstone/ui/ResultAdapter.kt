@@ -13,17 +13,18 @@ import kotlinx.android.synthetic.main.item_shoppinglist.view.*
 import java.util.*
 import kotlin.collections.ArrayList
 
-class ResultAdapter(private var recipe: ArrayList<Recipe>, val clickListener: (Recipe) -> Unit) :RecyclerView.Adapter<ResultAdapter.ViewHolder>(){
+class ResultAdapter(private var recipe: ArrayList<Recipe>) :RecyclerView.Adapter<ResultAdapter.ViewHolder>(), Filterable{
 
     var recipeFilterList = ArrayList<Recipe>()
+    var tempList = ArrayList<Recipe>()
     init {
-        recipeFilterList = recipe
+        recipeFilterList = Recipe.populateData()
     }
 
     inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
-        fun databind(recipe: Recipe, clickListener: (Recipe) -> Unit){
+        fun databind(recipe: Recipe){
             itemView.select_recipe.text = recipe.title
-            itemView.setOnClickListener{clickListener(recipe)}
+
         }
     }
 
@@ -34,40 +35,44 @@ class ResultAdapter(private var recipe: ArrayList<Recipe>, val clickListener: (R
     }
 
     override fun getItemCount(): Int {
-        return recipe.size
+        return recipeFilterList.size
     }
 
     override fun onBindViewHolder(holder: ResultAdapter.ViewHolder, position: Int) {
-        holder.databind(recipe[position], clickListener)
+        holder.itemView.select_recipe.text = recipeFilterList[position].title
     }
 
-//    override fun getFilter(): Filter {
-//        return object : Filter(){
-//            override fun performFiltering(constraint: CharSequence?): FilterResults {
-//                val charSearch = constraint.toString()
-//                if(charSearch.isEmpty()){
-//
-//                }else{
-//                    val resultList = ArrayList<Recipe>()
-//                    for(row in recipe.filter { it.title == charSearch }){
-//                        if(row.title.toLowerCase(Locale.ROOT).contains(charSearch.toLowerCase(
-//                                Locale.ROOT))){
-//                            resultList.add(row)
-//                        }
-//                    }
-//                    recipeFilterList = resultList
-//                }
-//                val filterResults = FilterResults()
-//                filterResults.values = recipeFilterList
-//                return filterResults
-//            }
-//            @Suppress("UNCHECKED_CAST")
-//            override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
-//                recipeFilterList = results?.values as ArrayList<Recipe>
-//                notifyDataSetChanged()
-//            }
-//        }
-//    }
+    @Suppress("UNCHECKED_CAST")
+    override fun getFilter(): Filter {
+        return object : Filter(){
+            override fun performFiltering(constraint: CharSequence?): Filter.FilterResults {
+                val charSearch = constraint.toString()
+                if(charSearch.isEmpty()){
+                    recipeFilterList = recipe
+                }else{
+                    val resultList = ArrayList<Recipe>()
+                    for(row in recipeFilterList){
+                        if(row.ingredients.toLowerCase(Locale.ROOT).contains(charSearch.toLowerCase(Locale.ROOT))){
+                            resultList.add(row)
+                        }
+                    }
+                    recipeFilterList = resultList
+                }
+                val filterResults = FilterResults()
+                filterResults.values = recipeFilterList
+                return filterResults
+            }
+
+            override fun publishResults(constraint: CharSequence?, filterResults: Filter.FilterResults?) {
+                recipeFilterList = filterResults?.values as ArrayList<Recipe>
+                notifyDataSetChanged()
+            }
+
+
+        }
+    }
+
+
 
 
 }

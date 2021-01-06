@@ -5,6 +5,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import com.example.madstone.model.Recipe
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface RecipeDao{
@@ -23,5 +24,6 @@ interface RecipeDao{
 
     @Query("DELETE FROM recipe_table")
     suspend fun deleteRecipes()
+
 
 }

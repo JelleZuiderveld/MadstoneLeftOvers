@@ -8,6 +8,10 @@ import com.example.madstone.model.Recipe
 import com.example.madstone.repository.RecipeRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.channels.ConflatedBroadcastChannel
+import kotlinx.coroutines.flow.asFlow
+import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.launch
 
 class RecipeViewModel (application: Application): AndroidViewModel(application){
@@ -15,6 +19,7 @@ class RecipeViewModel (application: Application): AndroidViewModel(application){
     private val scope = CoroutineScope(Dispatchers.IO)
     private val recipeRepository: RecipeRepository = RecipeRepository(application.applicationContext)
     val recipeData: LiveData<List<Recipe>> = recipeRepository.getAllRecipes()
+
 
     fun addRecipe(recipe: Recipe){
         scope.launch {
@@ -33,5 +38,6 @@ class RecipeViewModel (application: Application): AndroidViewModel(application){
             recipeRepository.deleteAllRecipe()
         }
     }
+
 
 }

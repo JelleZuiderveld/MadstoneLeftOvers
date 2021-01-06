@@ -8,10 +8,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
 import com.example.madstone.databinding.FragmentRecipeBinding
+import com.example.madstone.model.Recipe
 import com.example.madstone.viemodel.RecipeViewModel
-import kotlinx.android.synthetic.main.fragment_recipe.view.*
 
-class RecipeDetailFragment : Fragment(){
+class RecipeDetailFragment() : Fragment(){
 
     private var _binding: FragmentRecipeBinding? = null
     private val binding get() = _binding!!
@@ -30,6 +30,17 @@ class RecipeDetailFragment : Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        observeRecipe()
+    }
+
+    private fun observeRecipe(){
+        recipeViewModel.recipeData.observe(viewLifecycleOwner) { recipe ->
+            recipe.let {
+                binding.recipeName.text = it[id].title
+                binding.ingredientsD.text = it[id].ingredients
+                binding.howPrepare.text = it[id].prepare
+            }
+        }
     }
 
 }
