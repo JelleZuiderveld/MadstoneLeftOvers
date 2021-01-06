@@ -25,9 +25,12 @@ data class Recipe(
     val id: Long? = null
 ){
     companion object{
-        fun populateData(): Array<Recipe> {
-            return arrayOf<Recipe>(
-                Recipe("pasta","italianse pasta", "pasta, tomatensaus, 300gram gehakt", "this is how to prepare")
+        fun populateData(): ArrayList<Recipe> {
+            return arrayListOf(
+                Recipe("pasta","italianse pasta", "pasta, tomatensaus, gehakt", "this is how to prepare"),
+                Recipe("hamburger", "hamburger", "hamburger, brooodjes, ketchup, sla", "bak hamburger paar minuten"),
+                Recipe("boerenkool", "stamport", "aardappel, boerenkool, spek, worst", "how to prepare"),
+                Recipe("noodles", "noodles met kip", "kip, noodles, wokgroenten","how to prepare")
             )
         }
     }

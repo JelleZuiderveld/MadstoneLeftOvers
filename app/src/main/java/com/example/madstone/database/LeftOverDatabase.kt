@@ -29,17 +29,14 @@ abstract class LeftOverDatabase: RoomDatabase() {
             if (databaseInstance == null) {
                 synchronized(LeftOverDatabase::class.java) {
                     databaseInstance = Room.databaseBuilder(
-                        context.getApplicationContext(),
+                        context.applicationContext,
                         LeftOverDatabase::class.java, DATABASE_NAME
                     ).addCallback(object : RoomDatabase.Callback() {
                         override fun onCreate(db: SupportSQLiteDatabase) {
                             super.onCreate(db)
-                            Executors.newSingleThreadScheduledExecutor().execute(object : Runnable {
-                                override fun run() {
-                                    getDatabase(context)!!.recipeDao().insert(Recipe.populateData())
-                                    Log.d("DatabaseFilled", "DatabaseFilled")
-                                }
-                            })
+                            Executors.newSingleThreadScheduledExecutor().execute {
+                                Log.i("DatabaseFilled", "DatabaseFilled")
+                            }
 
                         }
 

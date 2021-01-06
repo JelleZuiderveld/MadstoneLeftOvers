@@ -10,12 +10,18 @@ import com.example.madstone.model.Recipe
 interface RecipeDao{
 
     @Insert
-    fun insert(recipe: Array<Recipe>)
+    fun insert(recipe: ArrayList<Recipe>)
 
     @Query("SELECT * FROM recipe_table")
     fun getAllRecipes(): LiveData<List<Recipe>>
 
     @Query("SELECT * FROM recipe_table WHERE ingredients LIKE :query")
     fun getRecipeIngredient(query: String): LiveData<List<Recipe>>
+
+    @Insert
+    suspend fun addRecipe(recipe: Recipe)
+
+    @Query("DELETE FROM recipe_table")
+    suspend fun deleteRecipes()
 
 }

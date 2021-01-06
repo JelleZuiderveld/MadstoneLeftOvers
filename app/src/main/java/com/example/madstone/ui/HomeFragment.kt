@@ -27,7 +27,7 @@ class HomeFragment : Fragment() {
 
 
         button_first.setOnClickListener() {
-            (context as MainActivity).replaceFragment(SearchFragment())
+            (context as MainActivity).replaceFragment(ResultFragment())
         }
 
     }

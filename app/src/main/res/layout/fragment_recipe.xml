@@ -47,13 +47,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/image" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView3"
+
+    <TextView
+        android:id="@+id/ingredientsD"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@id/textView"
+
+        />
 
     <TextView
         android:id="@+id/textView2"
@@ -63,7 +66,7 @@
         android:text="How to prepare"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView3" />
+        app:layout_constraintTop_toBottomOf="@+id/ingredientsD" />
 
     <TextView
         android:layout_width="wrap_content"

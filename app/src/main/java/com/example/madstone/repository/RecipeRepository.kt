@@ -19,4 +19,15 @@ class RecipeRepository (context: Context){
         return recipeDao.getAllRecipes()
     }
 
+    suspend fun addRecipe(recipe: Recipe) {
+        return recipeDao.addRecipe(recipe)
+    }
+
+    suspend fun insert(recipe: ArrayList<Recipe>){
+        return recipeDao.insert(recipe)
+    }
+
+    suspend fun deleteAllRecipe(){
+        return recipeDao.deleteRecipes()
+    }
 }

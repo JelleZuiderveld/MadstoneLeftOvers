@@ -12,15 +12,14 @@ import androidx.navigation.ui.NavigationUI.setupWithNavController
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.madstone.R
+import com.example.madstone.database.LeftOverDatabase
+import com.example.madstone.model.Recipe
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity() {
 
-//    lateinit var homeFragment: HomeFragment
-//    lateinit var shoppingListFragment: ShoppingListFragment
-//    lateinit var mapFragment: MapFragment
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener {item ->
         when(item.itemId){

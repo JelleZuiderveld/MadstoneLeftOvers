@@ -4,7 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import com.example.madstone.model.Recipe
-import com.example.madstone.model.ShoppingList
+
 import com.example.madstone.repository.RecipeRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -16,5 +16,22 @@ class RecipeViewModel (application: Application): AndroidViewModel(application){
     private val recipeRepository: RecipeRepository = RecipeRepository(application.applicationContext)
     val recipeData: LiveData<List<Recipe>> = recipeRepository.getAllRecipes()
 
+    fun addRecipe(recipe: Recipe){
+        scope.launch {
+            recipeRepository.addRecipe(recipe)
+        }
+    }
+
+    fun insert(recipe: ArrayList<Recipe>){
+        scope.launch {
+            recipeRepository.insert(recipe)
+        }
+    }
+
+    fun deleteAllRecipes(){
+        scope.launch {
+            recipeRepository.deleteAllRecipe()
+        }
+    }
 
 }
