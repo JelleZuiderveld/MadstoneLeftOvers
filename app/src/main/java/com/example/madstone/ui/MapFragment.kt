@@ -75,6 +75,6 @@ class MapFragment : Fragment(), OnMapReadyCallback {
             getAccces()
         }
     }
-    
+
 
 }

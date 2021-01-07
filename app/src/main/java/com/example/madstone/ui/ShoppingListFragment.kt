@@ -65,6 +65,7 @@ class ShoppingListFragment : Fragment(){
         val shoppingItem = ShoppingList(name)
 
         shoppingViewModel.addShopping(shoppingItem)
+        itemItem.text?.clear()
     }
 
     private fun creatItemTouchHelper(): ItemTouchHelper{

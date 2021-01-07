@@ -1,14 +1,18 @@
 package com.example.madstone.ui
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.replace
 import androidx.recyclerview.widget.RecyclerView
 import com.example.madstone.R
 import com.example.madstone.model.Recipe
 import kotlinx.android.synthetic.main.fragment_recipe.view.*
+import kotlinx.android.synthetic.main.fragment_results.view.*
 import kotlinx.android.synthetic.main.item_result.view.*
 import kotlinx.android.synthetic.main.item_shoppinglist.view.*
 import java.util.*
@@ -24,7 +28,6 @@ class ResultAdapter(private var recipe: ArrayList<Recipe>) :RecyclerView.Adapter
     inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         fun databind(recipe: Recipe){
             itemView.select_recipe.text = recipe.title
-
         }
     }
 
@@ -77,8 +80,6 @@ class ResultAdapter(private var recipe: ArrayList<Recipe>) :RecyclerView.Adapter
 
         }
     }
-
-
 
 
 }

@@ -23,4 +23,5 @@
     <string name="hint">Fill in an ingredient you have</string>
     <string name="ingredients_start">Ingredients: </string>
     <string name="how_to">How to prepare: </string>
+    <string name="add_ingredient">Add ingredients to your list</string>
 </resources>

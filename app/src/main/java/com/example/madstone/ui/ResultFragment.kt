@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -23,7 +24,7 @@ import kotlinx.coroutines.flow.onCompletion
 import java.util.*
 import kotlin.collections.ArrayList
 
-class ResultFragment: Fragment() {
+class ResultFragment: Fragment(){
 
     private val recipe: ArrayList<Recipe> = arrayListOf()
     private val resultAdapter: ResultAdapter = ResultAdapter(recipe)
@@ -70,6 +71,8 @@ class ResultFragment: Fragment() {
         })
 
     }
+
+
 
 
 //    private fun observeChanges(){

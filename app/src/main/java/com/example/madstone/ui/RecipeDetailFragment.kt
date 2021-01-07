@@ -15,9 +15,7 @@ class RecipeDetailFragment() : Fragment(){
 
     private var _binding: FragmentRecipeBinding? = null
     private val binding get() = _binding!!
-
-    private val recipeViewModel: RecipeViewModel by viewModels()
-
+    
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -30,17 +28,9 @@ class RecipeDetailFragment() : Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        observeRecipe()
+
     }
 
-    private fun observeRecipe(){
-        recipeViewModel.recipeData.observe(viewLifecycleOwner) { recipe ->
-            recipe.let {
-                binding.recipeName.text = it[id].title
-                //binding.ingredientsD.text = it[id].ingredients
-                binding.howPrepare.text = it[id].prepare
-            }
-        }
-    }
+
 
 }
