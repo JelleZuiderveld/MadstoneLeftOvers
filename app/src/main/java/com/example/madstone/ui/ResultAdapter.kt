@@ -8,6 +8,7 @@ import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
 import com.example.madstone.R
 import com.example.madstone.model.Recipe
+import kotlinx.android.synthetic.main.fragment_recipe.view.*
 import kotlinx.android.synthetic.main.item_result.view.*
 import kotlinx.android.synthetic.main.item_shoppinglist.view.*
 import java.util.*
@@ -16,7 +17,6 @@ import kotlin.collections.ArrayList
 class ResultAdapter(private var recipe: ArrayList<Recipe>) :RecyclerView.Adapter<ResultAdapter.ViewHolder>(), Filterable{
 
     var recipeFilterList = ArrayList<Recipe>()
-    var tempList = ArrayList<Recipe>()
     init {
         recipeFilterList = Recipe.populateData()
     }
@@ -40,6 +40,10 @@ class ResultAdapter(private var recipe: ArrayList<Recipe>) :RecyclerView.Adapter
 
     override fun onBindViewHolder(holder: ResultAdapter.ViewHolder, position: Int) {
         holder.itemView.select_recipe.text = recipeFilterList[position].title
+        holder.itemView.image_recipe.setImageResource(recipeFilterList[position].image)
+        holder.itemView.description.text = recipeFilterList[position].description
+        holder.itemView.ingredient_list.text = recipeFilterList[position].ingredients
+        holder.itemView.prepare_explain.text = recipeFilterList[position].prepare
     }
 
     @Suppress("UNCHECKED_CAST")
@@ -48,7 +52,7 @@ class ResultAdapter(private var recipe: ArrayList<Recipe>) :RecyclerView.Adapter
             override fun performFiltering(constraint: CharSequence?): Filter.FilterResults {
                 val charSearch = constraint.toString()
                 if(charSearch.isEmpty()){
-                    recipeFilterList = recipe
+                    recipeFilterList = recipeFilterList
                 }else{
                     val resultList = ArrayList<Recipe>()
                     for(row in recipeFilterList){

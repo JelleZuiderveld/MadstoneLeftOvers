@@ -12,7 +12,7 @@ import com.example.madstone.model.Recipe
 import com.example.madstone.model.ShoppingList
 import java.util.concurrent.Executors
 
-@Database(entities = [ShoppingList::class, Recipe::class], version = 2, exportSchema = false)
+@Database(entities = [ShoppingList::class, Recipe::class], version = 3, exportSchema = false)
 abstract class LeftOverDatabase: RoomDatabase() {
 
     abstract fun shoppingDao(): ShoppingDao
@@ -41,6 +41,7 @@ abstract class LeftOverDatabase: RoomDatabase() {
                         }
 
                     })
+                        .fallbackToDestructiveMigration()
                         .build()
                 }
             }

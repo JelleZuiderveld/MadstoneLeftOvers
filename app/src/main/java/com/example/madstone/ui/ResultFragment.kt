@@ -59,11 +59,11 @@ class ResultFragment: Fragment() {
         searchResults.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
             override fun onQueryTextChange(newText: String?): Boolean {
                 resultAdapter.filter.filter(newText)
-                return true
+                return false
             }
 
             override fun onQueryTextSubmit(query: String?): Boolean {
-                return true
+                return false
             }
 
         })

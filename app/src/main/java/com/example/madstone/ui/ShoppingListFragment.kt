@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.madstone.R
 import com.example.madstone.model.ShoppingList
 import com.example.madstone.viemodel.ShoppingViewModel
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_search.*
 import kotlinx.android.synthetic.main.fragment_shoppinglist.*
 
@@ -41,6 +42,8 @@ class ShoppingListFragment : Fragment(){
 
         emtpyBtn.setOnClickListener{
             shoppingViewModel.deleteAllShopping()
+            Snackbar.make(requireActivity().findViewById(android.R.id.content),R.string.removed_items, Snackbar.LENGTH_LONG).show()
+
         }
     }
 

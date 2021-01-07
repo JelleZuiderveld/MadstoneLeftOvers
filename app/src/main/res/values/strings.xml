@@ -19,5 +19,8 @@
     <string name="map">Map</string>
     <string name="ingredients">Ingredients:</string>
     <string name="back">back</string>
-
+    <string name="removed_items">All items are removed from your shoppinglist</string>
+    <string name="hint">Fill in an ingredient you have</string>
+    <string name="ingredients_start">Ingredients: </string>
+    <string name="how_to">How to prepare: </string>
 </resources>
