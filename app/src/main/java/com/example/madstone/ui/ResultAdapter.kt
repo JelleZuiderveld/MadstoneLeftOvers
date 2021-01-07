@@ -51,9 +51,11 @@ class ResultAdapter(private var recipe: ArrayList<Recipe>) :RecyclerView.Adapter
         return object : Filter(){
             override fun performFiltering(constraint: CharSequence?): Filter.FilterResults {
                 val charSearch = constraint.toString()
-                if(charSearch.isEmpty()){
-                    recipeFilterList = recipeFilterList
+                if(charSearch.isBlank()){
+                    recipeFilterList.clear()
                 }else{
+                    recipeFilterList.clear()
+                    recipeFilterList.addAll(Recipe.populateData())
                     val resultList = ArrayList<Recipe>()
                     for(row in recipeFilterList){
                         if(row.ingredients.toLowerCase(Locale.ROOT).contains(charSearch.toLowerCase(Locale.ROOT))){

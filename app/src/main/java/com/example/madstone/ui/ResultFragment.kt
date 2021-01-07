@@ -27,7 +27,7 @@ class ResultFragment: Fragment() {
 
     private val recipe: ArrayList<Recipe> = arrayListOf()
     private val resultAdapter: ResultAdapter = ResultAdapter(recipe)
-    private val recipeViewModel: RecipeViewModel by viewModels()
+    //private val recipeViewModel: RecipeViewModel by viewModels()
 
 
     override fun onCreateView(
@@ -53,11 +53,12 @@ class ResultFragment: Fragment() {
 
     private fun initView() {
         rv_results.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
-        rv_results.adapter = resultAdapter
+        //rv_results.adapter = resultAdapter
         rv_results.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
 
         searchResults.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
             override fun onQueryTextChange(newText: String?): Boolean {
+                rv_results.adapter = resultAdapter
                 resultAdapter.filter.filter(newText)
                 return false
             }

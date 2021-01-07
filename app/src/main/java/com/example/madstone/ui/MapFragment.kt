@@ -25,8 +25,6 @@ import java.util.jar.Manifest
 
 class MapFragment : Fragment(), OnMapReadyCallback {
 
-    private lateinit var currentLocation: Location
-    private lateinit var fusedLocation: FusedLocationProviderClient
     private val permissionCode = 1
     private lateinit var googleMap: GoogleMap
 
@@ -77,5 +75,6 @@ class MapFragment : Fragment(), OnMapReadyCallback {
             getAccces()
         }
     }
+    
 
 }

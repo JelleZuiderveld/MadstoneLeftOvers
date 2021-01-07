@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.madstone.R
 import com.example.madstone.model.ShoppingList
 import com.example.madstone.viemodel.ShoppingViewModel
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_search.*
 import kotlinx.android.synthetic.main.fragment_shoppinglist.*
@@ -24,6 +25,7 @@ class ShoppingListFragment : Fragment(){
     private val shoppings: ArrayList<ShoppingList> = arrayListOf()
     private val shoppingListAdapter: ShoppingListAdapter = ShoppingListAdapter(shoppings)
     private val shoppingViewModel: ShoppingViewModel by viewModels()
+    val testItem = arrayOf("item1", "item2")
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

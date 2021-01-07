@@ -37,7 +37,7 @@ class RecipeDetailFragment() : Fragment(){
         recipeViewModel.recipeData.observe(viewLifecycleOwner) { recipe ->
             recipe.let {
                 binding.recipeName.text = it[id].title
-                binding.ingredientsD.text = it[id].ingredients
+                //binding.ingredientsD.text = it[id].ingredients
                 binding.howPrepare.text = it[id].prepare
             }
         }
